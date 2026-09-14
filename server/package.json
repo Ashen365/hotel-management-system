@@ -1,0 +1,27 @@
+{
+  "name": "hotel-management-server",
+  "version": "1.0.0",
+  "description": "Backend REST API for the Hotel Management System (MERN)",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "keywords": [
+    "hotel",
+    "management",
+    "mern",
+    "api",
+    "express"
+  ],
+  "author": "Ashen365",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
