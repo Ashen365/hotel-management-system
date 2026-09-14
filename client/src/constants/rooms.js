@@ -25,4 +25,8 @@ export const STATUS_STYLES = {
   confirmed: 'bg-emerald-500/20 text-emerald-300',
   completed: 'bg-slate-500/20 text-slate-400',
   cancelled: 'bg-red-500/20 text-red-400',
+  // housekeeping task statuses
+  in_progress: 'bg-indigo-500/20 text-indigo-300',
 }
+
+export const HOUSEKEEPING_STATUSES = ['pending', 'in_progress', 'completed']

@@ -1,4 +1,5 @@
 const Room = require('../models/Room');
+const Booking = require('../models/Booking');
 const ApiError = require('../utils/ApiError');
 
 // GET /api/rooms - public
@@ -96,4 +97,44 @@ const deleteRoom = async (req, res, next) => {
   });
 };
 
-module.exports = { getRooms, getRoom, createRoom, updateRoom, deleteRoom };
+// PATCH /api/rooms/:id/status - housekeeping family
+// Lightweight status change used by front-desk / housekeeping.
+const updateRoomStatus = async (req, res, next) => {
+  const room = await Room.findByIdAndUpdate(
+    req.params.id,
+    { status: req.body.status },
+    { returnDocument: 'after', runValidators: true }
+  );
+
+  if (!room) {
+    return next(new ApiError(404, 'Room not found'));
+  }
+
+  res.status(200).json({
+    success: true,
+    message: 'Room status updated',
+    data: { room },
+  });
+};
+
+// GET /api/rooms/to-clean - housekeeping family
+// Rooms whose confirmed/completed bookings have already ended and that
+// are not yet marked available (occupied or reserved) -> cleaning queue.
+const toCleanRooms = async (req, res, next) => {
+  const now = new Date();
+  const endOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59, 999);
+
+  const roomIdsWithCheckouts = await Booking.find({
+    checkOut: { $lte: endOfToday },
+    status: { $in: ['confirmed', 'completed'] },
+  }).distinct('room');
+
+  const rooms = await Room.find({
+    _id: { $in: roomIdsWithCheckouts },
+    status: { $ne: 'available' },
+  }).select('number type status pricePerNight capacity');
+
+  res.status(200).json({ success: true, count: rooms.length, data: { rooms } });
+};
+
+module.exports = { getRooms, getRoom, createRoom, updateRoom, deleteRoom, updateRoomStatus, toCleanRooms };

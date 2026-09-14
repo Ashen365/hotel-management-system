@@ -4,6 +4,10 @@ const { ROOM_TYPES, ROOM_STATUSES } = require('../models/Room');
 const TYPE_MSG = `Type must be one of: ${ROOM_TYPES.join(', ')}`;
 const STATUS_MSG = `Status must be one of: ${ROOM_STATUSES.join(', ')}`;
 
+const roomStatusValidation = [
+  body('status').isIn(ROOM_STATUSES).withMessage(STATUS_MSG),
+];
+
 const idParamValidation = [
   param('id').isMongoId().withMessage('Invalid room id'),
 ];
@@ -39,4 +43,4 @@ const updateRoomValidation = [
   body('description').optional().isString().withMessage('description must be a string'),
 ];
 
-module.exports = { idParamValidation, listRoomsValidation, createRoomValidation, updateRoomValidation };
+module.exports = { idParamValidation, listRoomsValidation, createRoomValidation, updateRoomValidation, roomStatusValidation };
