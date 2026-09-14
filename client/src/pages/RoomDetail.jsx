@@ -68,6 +68,13 @@ export default function RoomDetail() {
             ))}
           </ul>
         )}
+
+        <Link
+          to={`/rooms/${room._id}/book`}
+          className="mt-6 inline-block rounded bg-blue-600 px-6 py-3 font-medium hover:bg-blue-700"
+        >
+          Book this room
+        </Link>
       </div>
     </div>
   )
