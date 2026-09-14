@@ -3,6 +3,7 @@ import { useAuth } from '../context/AuthContext'
 
 export default function Navbar() {
   const { user, isAuthenticated, logout } = useAuth()
+  const isAdmin = isAuthenticated && (user.role === 'admin' || user.role === 'manager')
 
   return (
     <header className="border-b border-slate-800 bg-slate-900">
@@ -10,6 +11,11 @@ export default function Navbar() {
         <Link to="/" className="text-lg font-bold">Hotel Manager</Link>
 
         <nav className="flex items-center gap-4 text-sm">
+          <Link to="/rooms" className="text-slate-300 hover:text-white">Rooms</Link>
+          {isAdmin && (
+            <Link to="/admin/rooms" className="text-slate-300 hover:text-white">Manage rooms</Link>
+          )}
+
           {isAuthenticated ? (
             <>
               <span className="text-slate-400">
