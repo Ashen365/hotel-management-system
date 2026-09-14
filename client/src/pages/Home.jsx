@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import api from '../services/api'
 
 export default function Home() {
@@ -38,6 +39,10 @@ export default function Home() {
           {error && <span className="text-slate-500">({error})</span>}
         </p>
       )}
+
+      <Link to="/rooms" className="mt-8 rounded bg-blue-600 px-6 py-3 font-medium hover:bg-blue-700">
+        Browse our rooms
+      </Link>
     </div>
   )
 }
