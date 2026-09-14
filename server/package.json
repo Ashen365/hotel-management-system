@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "seed:rooms": "node src/seeds/seedRooms.js"
+    "seed:rooms": "node src/seeds/seedRooms.js",
+    "seed:bookings": "node src/seeds/seedBookings.js"
   },
   "keywords": [
     "hotel",

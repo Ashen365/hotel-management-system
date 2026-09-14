@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 const healthRoutes = require('./routes/health.routes');
 const authRoutes = require('./routes/auth.routes');
 const roomRoutes = require('./routes/room.routes');
+const bookingRoutes = require('./routes/booking.routes');
 const notFound = require('./middleware/notFound.middleware');
 const errorHandler = require('./middleware/error.middleware');
 
@@ -22,6 +23,7 @@ app.use(express.json());
 app.use('/api', healthRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/rooms', roomRoutes);
+app.use('/api/bookings', bookingRoutes);
 
 // ---- Error handling (always last) ----
 app.use(notFound);
