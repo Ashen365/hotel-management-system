@@ -10,6 +10,7 @@ import MyBookings from './pages/MyBookings'
 import AdminRooms from './pages/AdminRooms'
 import AdminBookings from './pages/AdminBookings'
 import RoomForm from './pages/RoomForm'
+import Housekeeping from './pages/Housekeeping'
 import Navbar from './components/Navbar'
 import ProtectedRoute from './routes/ProtectedRoute'
 import RoleProtectedRoute from './routes/RoleProtectedRoute'
@@ -39,6 +40,14 @@ function App() {
             element={
               <RoleProtectedRoute allowedRoles={['admin', 'manager', 'receptionist']}>
                 <AdminBookings />
+              </RoleProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/housekeeping"
+            element={
+              <RoleProtectedRoute allowedRoles={['admin', 'manager', 'receptionist', 'housekeeping']}>
+                <Housekeeping />
               </RoleProtectedRoute>
             }
           />

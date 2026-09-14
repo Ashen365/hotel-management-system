@@ -5,6 +5,7 @@ export default function Navbar() {
   const { user, isAuthenticated, logout } = useAuth()
   const isAdmin = isAuthenticated && (user.role === 'admin' || user.role === 'manager')
   const isStaff = isAuthenticated && ['admin', 'manager', 'receptionist'].includes(user.role)
+  const isHousekeeping = isAuthenticated && ['admin', 'manager', 'receptionist', 'housekeeping'].includes(user.role)
 
   return (
     <header className="border-b border-slate-800 bg-slate-900">
@@ -21,6 +22,9 @@ export default function Navbar() {
           )}
           {isStaff && (
             <Link to="/admin/bookings" className="text-slate-300 hover:text-white">All bookings</Link>
+          )}
+          {isHousekeeping && (
+            <Link to="/admin/housekeeping" className="text-slate-300 hover:text-white">Housekeeping</Link>
           )}
 
           {isAuthenticated ? (

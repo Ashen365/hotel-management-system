@@ -6,6 +6,8 @@ const healthRoutes = require('./routes/health.routes');
 const authRoutes = require('./routes/auth.routes');
 const roomRoutes = require('./routes/room.routes');
 const bookingRoutes = require('./routes/booking.routes');
+const housekeepingRoutes = require('./routes/housekeeping.routes');
+const userRoutes = require('./routes/user.routes');
 const notFound = require('./middleware/notFound.middleware');
 const errorHandler = require('./middleware/error.middleware');
 
@@ -24,6 +26,8 @@ app.use('/api', healthRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/rooms', roomRoutes);
 app.use('/api/bookings', bookingRoutes);
+app.use('/api/housekeeping', housekeepingRoutes);
+app.use('/api/users', userRoutes);
 
 // ---- Error handling (always last) ----
 app.use(notFound);

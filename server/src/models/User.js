@@ -1,6 +1,16 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
+const USER_ROLES = [
+  'admin',
+  'manager',
+  'receptionist',
+  'housekeeping',
+  'restaurant',
+  'cashier',
+  'guest',
+];
+
 const userSchema = new mongoose.Schema(
   {
     name: {
@@ -24,7 +34,7 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ['admin', 'manager', 'receptionist', 'housekeeping', 'restaurant', 'cashier', 'guest'],
+      enum: USER_ROLES,
       default: 'guest',
     },
     isActive: {
@@ -49,3 +59,4 @@ userSchema.methods.comparePassword = async function (enteredPassword) {
 };
 
 module.exports = mongoose.model('User', userSchema);
+module.exports.USER_ROLES = USER_ROLES;

@@ -7,7 +7,8 @@
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
     "seed:rooms": "node src/seeds/seedRooms.js",
-    "seed:bookings": "node src/seeds/seedBookings.js"
+    "seed:bookings": "node src/seeds/seedBookings.js",
+    "seed:housekeeping": "node src/seeds/seedHousekeeping.js"
   },
   "keywords": [
     "hotel",
