@@ -5,7 +5,10 @@ import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
 import Rooms from './pages/Rooms'
 import RoomDetail from './pages/RoomDetail'
+import BookRoom from './pages/BookRoom'
+import MyBookings from './pages/MyBookings'
 import AdminRooms from './pages/AdminRooms'
+import AdminBookings from './pages/AdminBookings'
 import RoomForm from './pages/RoomForm'
 import Navbar from './components/Navbar'
 import ProtectedRoute from './routes/ProtectedRoute'
@@ -22,6 +25,23 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/rooms" element={<Rooms />} />
           <Route path="/rooms/:id" element={<RoomDetail />} />
+          <Route path="/rooms/:id/book" element={<ProtectedRoute><BookRoom /></ProtectedRoute>} />
+          <Route
+            path="/bookings"
+            element={
+              <ProtectedRoute>
+                <MyBookings />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/bookings"
+            element={
+              <RoleProtectedRoute allowedRoles={['admin', 'manager', 'receptionist']}>
+                <AdminBookings />
+              </RoleProtectedRoute>
+            }
+          />
           <Route
             path="/dashboard"
             element={
