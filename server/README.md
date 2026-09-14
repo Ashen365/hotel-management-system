@@ -6,10 +6,15 @@ Express REST API for the Hotel Management System.
 
 ```bash
 npm install
+```
+
+Copy `.env.example` to `.env` and fill in `MONGODB_URI` (MongoDB Atlas or local).
+
+```bash
 npm run dev
 ```
 
-Server runs at `http://localhost:5000`.
+Server runs at `http://localhost:5000`. It connects to MongoDB before listening.
 
 ## Health check
 
