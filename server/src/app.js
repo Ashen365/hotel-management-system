@@ -3,6 +3,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 
 const healthRoutes = require('./routes/health.routes');
+const authRoutes = require('./routes/auth.routes');
 const notFound = require('./middleware/notFound.middleware');
 const errorHandler = require('./middleware/error.middleware');
 
@@ -18,6 +19,7 @@ app.use(express.json());
 
 // ---- API routes ----
 app.use('/api', healthRoutes);
+app.use('/api/auth', authRoutes);
 
 // ---- Error handling (always last) ----
 app.use(notFound);
